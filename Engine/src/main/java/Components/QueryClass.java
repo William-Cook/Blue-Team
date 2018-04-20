@@ -1152,8 +1152,9 @@ public class QueryClass {
             double[] goldARR = goldAR.stream().mapToDouble(Double::doubleValue).toArray();
 
             TTest tt = new TTest();
-            double pval = tt.tTest(greenARR, goldARR);
-            return 1.0 - pval;
+//            double pval = tt.tTest(greenARR, goldARR);
+            return 1.0;
+//            return 1.0 - pval;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
