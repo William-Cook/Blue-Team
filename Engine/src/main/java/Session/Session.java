@@ -399,9 +399,9 @@ public class Session {
             board.placeWord(validMove.getStartX(), validMove.getStartY(), horizontal, word);
             int score = calculateMovePoints((Move)result[1]);
             displayMoveStats((Move) result[1], score);
-            user.setScore(user.getScore() + score);
             if (user instanceof Player) {
                 Player temp = (Player) user;
+                temp.setScore(((Player) user).getScore() + score);
                 updateTeamScore(score, temp.getTeam());
                 updateTeamHighestWordScore(temp.getTeam(), score);
                 updateLongestWord(temp.getTeam(), (Move) result[1]);
