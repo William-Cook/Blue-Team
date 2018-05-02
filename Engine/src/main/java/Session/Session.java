@@ -419,9 +419,9 @@ public class Session {
             board.placeWord(validMove.getStartX(), validMove.getStartY(), horizontal, word);
             int score = calculateMovePoints((Move)result[1]) * 2;
             displayMoveStats((Move) result[1], score);
-            user.setScore(user.getScore() + score);
             if (user instanceof Player) {
                 Player temp = (Player) user;
+                temp.setScore(((Player)user).getScore() + score);
                 updateTeamScore(score, temp.getTeam());
                 updateBonusWord(temp.getTeam());
                 updateTeamHighestWordScore(temp.getTeam(), score);
@@ -760,9 +760,11 @@ public class Session {
     }
 
     private void sendScoreStat(User player) {
-        Player temp = (Player) player;
-        dbQueries.updatePlayerCumulative("test", temp.getScore());
-        System.out.println(player.getUsername() + " " + player.getScore());
+        if (player instanceof Player) {
+            Player temp = (Player) player;
+            dbQueries.updatePlayerCumulative("test", temp.getScore());
+            System.out.println(player.getUsername() + " " + temp.getScore());
+        }
     }
 
     private void sendTeamStat() {
